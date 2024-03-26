@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mainToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/top_navigation_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mainPageButton"
+                android:layout_width="340dp"
+                android:layout_height="55dp"
+                android:backgroundTint="#0077B6"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:cornerRadius="5dp"
+                app:iconTint="@color/white"
+                app:tintMode="src_in"
+                android:text="Main page" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/resultsPageButton"
+                android:layout_width="340dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#0077B6"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:cornerRadius="5dp"
+                app:iconTint="@color/white"
+                app:tintMode="src_in"
+                android:text="Results" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/aboutUsPageButton"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#0077B6"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:cornerRadius="5dp"
+                    app:iconTint="@color/white"
+                    app:tintMode="src_in"
+                    android:text="About us" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/profilePageButton"
+                    android:layout_width="60dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="#0077B6"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:cornerRadius="5dp"
+                    app:iconTint="@color/white"
+                    app:tintMode="src_in"
+                    android:text="P" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/secondaryToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainToolbar">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/electionsSectionButton"
+                    android:layout_width="160dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:cornerRadius="5dp"
+                    app:iconTint="@color/white"
+                    app:tintMode="src_in"
+                    android:text="Elections"
+                    android:layout_marginStart="145dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/petitionsSectionButton"
+                    android:layout_width="160dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:cornerRadius="5dp"
+                    app:iconTint="@color/white"
+                    app:tintMode="src_in"
+                    android:text="Petitions" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/surveysSectionButton"
+                    android:layout_width="160dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:cornerRadius="5dp"
+                    app:iconTint="@color/white"
+                    app:tintMode="src_in"
+                    android:text="Surveys" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="472dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondaryToolbar">
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

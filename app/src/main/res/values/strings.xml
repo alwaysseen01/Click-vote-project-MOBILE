@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ClickVoteAndroid</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_main_page_element_text">Main page</string>
+    <string name="nav_results_page_element_text">Results</string>
+    <string name="nav_about_us_page_element_text">About us</string>
+    <string name="nav_elections_section_secondary_element_text">Elections</string>
+    <string name="nav_petitions_section_secondary_element_text">Привет, %1$s!</string>
+    <string name="nav_surveys_section_secondary_element_text">Вход не выполнен</string>
+</resources>
