@@ -21,9 +21,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainElectionsFragment : Fragment() {
 
     private lateinit var electionsContainer: LinearLayout
-    private lateinit var electionTitle: TextView
+    private lateinit var electionWrapper: LinearLayout
+    private lateinit var electionCandidateBox: LinearLayout
 
-    private val url = "http://localhost:8081/elections/active/" // URL API-метода на сервере
+    private val url = "http://10.0.2.2:8081/elections/active/"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +34,6 @@ class MainElectionsFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_main_elections, container, false)
 
         electionsContainer = view.findViewById(R.id.electionsContainer)
-        electionTitle = view.findViewById(R.id.electionTitle)
 
         fetchData()
 
@@ -41,6 +41,8 @@ class MainElectionsFragment : Fragment() {
     }
 
     private fun fetchData() {
+        Log.d("MainElectionsFragment", "Starting fetchData")
+
         // Retrofit
         val gson = GsonBuilder()
             .setLenient()
@@ -58,9 +60,15 @@ class MainElectionsFragment : Fragment() {
         call.enqueue(object : Callback<List<Election>> {
             override fun onResponse(call: Call<List<Election>>, response: Response<List<Election>>) {
                 if (response.isSuccessful) {
+                    Log.d("MainElectionsFragment", "Response is successful")
                     val electionList = response.body()
                     if (electionList != null) {
+                        Log.d("MainElectionsFragment",
+                            "Election list is not null, updating election info: $electionList"
+                        )
                         updateElectionInfo(electionList)
+                    } else {
+                        Log.d("MainElectionsFragment", "Election list is null")
                     }
                 } else {
                     Log.e("MainElectionsFragment", "Error fetching data: ${response.code()}")
@@ -73,55 +81,65 @@ class MainElectionsFragment : Fragment() {
         })
     }
 
+
     private fun updateElectionInfo(electionList: List<Election>?) {
+        Log.d("MainElectionsFragment", "Starting updateElectionInfo")
+
         // Очистить контейнер перед добавлением
         electionsContainer.removeAllViews()
+        Log.d("MainElectionsFragment", "Cleared electionsContainer")
 
-        // Создать LinearLayout для каждого Election
         if (electionList != null) {
+            Log.d("MainElectionsFragment", "Election list is not null")
             for (election in electionList) {
-                val electionWrapper = LayoutInflater.from(context)
-                    .inflate(electionsContainer.findViewById(R.id.electionWrapper), electionsContainer, false)
+                Log.d("MainElectionsFragment", "Processing election: ${election.title}")
 
-                // Заполнить информацию о выборах (electionTitle)
+                val electionWrapper = LayoutInflater.from(context)
+                    .inflate(R.layout.election_box, electionsContainer, false)
+
                 val electionTitleView = electionWrapper.findViewById<TextView>(R.id.electionTitle)
                 electionTitleView.text = election.title
-
-                // Создать LinearLayout для каждого кандидата
-                val candidateContainer = electionWrapper.findViewById<LinearLayout>(R.id.electionCandidateBox) // Assuming id for candidate container
-                candidateContainer.removeAllViews() // Clear candidates before adding
+                Log.d("MainElectionsFragment", "Set election title to: ${election.title}")
 
                 for (candidate in election.options) {
-                    val candidateView = LayoutInflater.from(context)
-                        .inflate(electionsContainer.findViewById(R.id.electionCandidateBox), candidateContainer, false)
+                    Log.d("MainElectionsFragment", "Processing candidate: ${candidate.firstName} ${candidate.lastName}")
 
-                    // Photo URL
-                    val candidatePhotoView = candidateView.findViewById<ImageView>(R.id.electionCandidateImage)
+                    val electionCandidateBox = LayoutInflater.from(context)
+                        .inflate(R.layout.election_candidate_box, null, false)
+
+                    val candidatePhotoView = electionCandidateBox.findViewById<ImageView>(R.id.electionCandidateImage)
                     val candidatePhotoURL = candidate.photoUrl
                     Picasso.get()
                         .load(candidatePhotoURL)
                         .into(candidatePhotoView);
+                    Log.d("MainElectionsFragment", "Loaded candidate photo from URL: $candidatePhotoURL")
 
                     // Full name
-                    val candidateNameView = candidateView.findViewById<TextView>(R.id.electionCandidateFullNameField)
-                    val candidateName = "${candidate.firstName} ${candidate.lastName}" // Assuming names are combined
+                    val candidateNameView = electionCandidateBox.findViewById<TextView>(R.id.electionCandidateFullNameField)
+                    val candidateName = "${candidate.firstName} ${candidate.lastName}"
                     candidateNameView.text = candidateName
+                    Log.d("MainElectionsFragment", "Set candidate name to: $candidateName")
 
                     // Age
-                    val candidateAgeView = candidateView.findViewById<TextView>(R.id.electionCandidateAgeField)
+                    val candidateAgeView = electionCandidateBox.findViewById<TextView>(R.id.electionCandidateAgeField)
                     val candidateAge = candidate.dateOfBirth
                     candidateAgeView.text = candidateAge
+                    Log.d("MainElectionsFragment", "Set candidate age to: $candidateAge")
 
                     // Short description
-                    val candidateShortDescriptionView = candidateView.findViewById<TextView>(R.id.electionCandidateShortDescriptionField)
+                    val candidateShortDescriptionView = electionCandidateBox.findViewById<TextView>(R.id.electionCandidateShortDescriptionField)
                     val candidateShortDescription = candidate.shortDescription
-                    candidateShortDescriptionView.text = candidateShortDescription
 
-                    candidateContainer.addView(candidateView)
+
+                    // Добавить candidateView в контейнер
+                    val candidateContainer = electionWrapper.findViewById<LinearLayout>(R.id.electionCandidateContainer)
+                    candidateContainer.addView(electionCandidateBox)
                 }
 
                 electionsContainer.addView(electionWrapper)
             }
+        } else {
+            Log.d("MainElectionsFragment", "Election list is null")
         }
     }
 }
