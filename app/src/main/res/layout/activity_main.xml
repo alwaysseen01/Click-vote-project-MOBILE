@@ -94,7 +94,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
+        app:layout_constraintBottom_toTopOf="@+id/scrollable_fragment_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainToolbar">
@@ -155,9 +155,11 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+
+    <ScrollView
+        android:id="@+id/scrollable_fragment_box"
         android:layout_width="match_parent"
+        android:scrollbars="none"
         android:layout_height="472dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,6 +167,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/secondaryToolbar">
 
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="472dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondaryToolbar">
 
+        </FrameLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

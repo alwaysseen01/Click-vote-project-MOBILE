@@ -126,12 +126,6 @@ class MainElectionsFragment : Fragment() {
                     candidateAgeView.text = candidateAge
                     Log.d("MainElectionsFragment", "Set candidate age to: $candidateAge")
 
-                    // Short description
-                    val candidateShortDescriptionView = electionCandidateBox.findViewById<TextView>(R.id.electionCandidateShortDescriptionField)
-                    val candidateShortDescription = candidate.shortDescription
-
-
-                    // Добавить candidateView в контейнер
                     val candidateContainer = electionWrapper.findViewById<LinearLayout>(R.id.electionCandidateContainer)
                     candidateContainer.addView(electionCandidateBox)
                 }

@@ -15,14 +15,20 @@
         android:layout_marginTop="20dp"
         android:textAlignment="center"/>
 
-    <LinearLayout
-        android:id="@+id/electionCandidateContainer"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:scrollbars="none">
 
-        <!-- Кандидаты будут добавлены сюда -->
+        <LinearLayout
+            android:id="@+id/electionCandidateContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <!-- Кандидаты будут добавлены сюда -->
 
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

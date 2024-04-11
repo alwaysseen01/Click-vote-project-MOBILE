@@ -3,12 +3,14 @@
     android:id="@+id/electionCandidateBox"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/electionCandidateImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"/>
 
     <LinearLayout
         android:id="@+id/electionCandidateShortInfoBox"
