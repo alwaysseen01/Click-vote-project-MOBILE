@@ -1,59 +1,110 @@
 package com.example.clickvoteandroid
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.google.gson.GsonBuilder
+import com.squareup.picasso.Picasso
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MainPetitionsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MainPetitionsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var petitionsContainer: LinearLayout
+    private lateinit var petitionWrapper: LinearLayout
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val url = "http://10.0.2.2:8081/petitions/active/"
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_petitions, container, false)
+        val view = inflater.inflate(R.layout.fragment_main_petitions, container, false)
+
+        petitionsContainer = view.findViewById(R.id.petitionsContainer)
+
+        fetchData()
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainPetitionsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainPetitionsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun fetchData() {
+        Log.d("MainPetitionsFragment", "Starting fetchData")
+
+        // Retrofit
+        val gson = GsonBuilder()
+            .setLenient()
+            .create()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(url)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+
+        val api = retrofit.create(PetitionsApi::class.java)
+
+        val call = api.getActivePetitions() // Assuming endpoint returns a list
+
+        call.enqueue(object : Callback<List<Petition>> {
+            override fun onResponse(call: Call<List<Petition>>, response: Response<List<Petition>>) {
+                if (response.isSuccessful) {
+                    Log.d("MainPetitionsFragment", "Response is successful")
+                    val petitionList = response.body()
+                    if (petitionList != null) {
+                        Log.d("MainPetitionsFragment",
+                            "petition list is not null, updating petition info: $petitionList"
+                        )
+                        updatePetitionInfo(petitionList)
+                    } else {
+                        Log.d("MainPetitionsFragment", "petition list is null")
+                    }
+                } else {
+                    Log.e("MainPetitionsFragment", "Error fetching data: ${response.code()}")
                 }
             }
+
+            override fun onFailure(call: Call<List<Petition>>, t: Throwable) {
+                Log.e("MainPetitionsFragment", "Error fetching data: $t")
+            }
+        })
+    }
+
+    private fun updatePetitionInfo(petitionList: List<Petition>?) {
+        Log.d("MainPetitionsFragment", "Starting updatePetitionInfo")
+
+        // Очистить контейнер перед добавлением
+        petitionsContainer.removeAllViews()
+        Log.d("MainPetitionsFragment", "Cleared petitionsContainer")
+
+        if (petitionList != null) {
+            Log.d("MainPetitionsFragment", "Petition list is not null")
+            for (petition in petitionList) {
+                Log.d("MainPetitionsFragment", "Processing petition: ${petition.title}")
+
+                val petitionWrapper = LayoutInflater.from(context)
+                    .inflate(R.layout.petition_box, petitionsContainer, false)
+
+                val petitionTitleView = petitionWrapper.findViewById<TextView>(R.id.petitionTitle)
+                petitionTitleView.text = petition.title
+                Log.d("MainPetitionsFragment", "Set petition title to: ${petition.title}")
+
+                val petitionShortDescriptionView = petitionWrapper.findViewById<TextView>(R.id.petitionShortDescription)
+                petitionShortDescriptionView.text = petition.shortDescription
+                Log.d("MainPetitionsFragment", "Set petition title to: ${petition.shortDescription}")
+
+                petitionsContainer.addView(petitionWrapper)
+            }
+        } else {
+            Log.d("MainPetitionsFragment", "Petition list is null")
+        }
     }
 }
