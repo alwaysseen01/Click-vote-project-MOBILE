@@ -5,12 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.gson.GsonBuilder
-import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,7 +17,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainPetitionsFragment : Fragment() {
     private lateinit var petitionsContainer: LinearLayout
-    private lateinit var petitionWrapper: LinearLayout
 
     private val url = "http://10.0.2.2:8081/petitions/active/"
 

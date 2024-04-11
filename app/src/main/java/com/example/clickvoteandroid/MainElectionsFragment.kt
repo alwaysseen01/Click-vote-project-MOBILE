@@ -21,8 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainElectionsFragment : Fragment() {
 
     private lateinit var electionsContainer: LinearLayout
-    private lateinit var electionWrapper: LinearLayout
-    private lateinit var electionCandidateBox: LinearLayout
 
     private val url = "http://10.0.2.2:8081/elections/active/"
 

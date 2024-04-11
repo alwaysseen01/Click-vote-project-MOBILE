@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.button.MaterialButton xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/surveyOptionButton"
+    android:layout_width="110dp"
+    android:layout_height="40dp"
+    android:backgroundTint="#0077B6"
+    android:textColor="@color/white"
+    android:textSize="14sp"
+    app:cornerRadius="10dp"
+    app:iconTint="@color/white"
+    app:tintMode="src_in"
+    android:text=""
+    android:insetLeft="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
