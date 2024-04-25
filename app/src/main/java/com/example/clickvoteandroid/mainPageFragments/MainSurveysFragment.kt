@@ -21,8 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainSurveysFragment : Fragment() {
 
     private lateinit var surveysContainer: LinearLayout
-    private lateinit var surveyWrapper: LinearLayout
-    private lateinit var surveyOptionBox: LinearLayout
 
     private val url = "http://10.0.2.2:8081/surveys/active/"
 
@@ -93,9 +91,6 @@ class MainSurveysFragment : Fragment() {
             Log.d("MainSurveysFragment", "Survey list is not null")
             for (survey in surveyList) {
                 Log.d("MainSurveysFragment", "Processing survey: ${survey.title}")
-
-                val surveyOptionBox = LayoutInflater.from(context)
-                    .inflate(R.layout.survey_option_box, null, false)
 
                 val surveyWrapper = LayoutInflater.from(context)
                     .inflate(R.layout.survey_box, surveysContainer, false)
