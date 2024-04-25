@@ -1,0 +1,59 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:id="@+id/petitionWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/petitionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:textFontWeight="600"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/petitionVotesCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:textFontWeight="600"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/petitionShortDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textFontWeight="600"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/petitionMoreInfoButton"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:backgroundTint="#0077B6"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:cornerRadius="10dp"
+            app:iconTint="@color/white"
+            app:tintMode="src_in"
+            android:text="More info"
+            android:layout_marginLeft="150dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

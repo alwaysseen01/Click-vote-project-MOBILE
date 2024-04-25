@@ -1,4 +1,4 @@
-package com.example.clickvoteandroid
+package com.example.clickvoteandroid.dataClasses
 
 import com.google.gson.annotations.SerializedName
 

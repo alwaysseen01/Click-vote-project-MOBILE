@@ -7,6 +7,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.example.clickvoteandroid.mainPageFragments.MainElectionsFragment
+import com.example.clickvoteandroid.mainPageFragments.MainPetitionsFragment
+import com.example.clickvoteandroid.mainPageFragments.MainSurveysFragment
+import com.example.clickvoteandroid.resultsPageFragments.ResultsElectionsFragment
+import com.example.clickvoteandroid.resultsPageFragments.ResultsPetitionsFragment
+import com.example.clickvoteandroid.resultsPageFragments.ResultsSurveysFragment
 import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {

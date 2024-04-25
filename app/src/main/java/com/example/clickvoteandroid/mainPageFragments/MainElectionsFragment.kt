@@ -1,4 +1,4 @@
-package com.example.clickvoteandroid
+package com.example.clickvoteandroid.mainPageFragments
 
 import androidx.fragment.app.Fragment
 
@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.example.clickvoteandroid.dataClasses.Election
+import com.example.clickvoteandroid.R
+import com.example.clickvoteandroid.api.ElectionsApi
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import retrofit2.Call

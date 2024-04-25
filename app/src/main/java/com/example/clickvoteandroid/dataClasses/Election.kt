@@ -1,12 +1,11 @@
-package com.example.clickvoteandroid
+package com.example.clickvoteandroid.dataClasses
 
 import com.google.gson.annotations.SerializedName
 
-data class Petition(
+data class Election(
     @SerializedName("id") val id: Long,
     @SerializedName("title") val title: String,
-    @SerializedName("shortDescription") val shortDescription: String,
     @SerializedName("start_date") val startDate: String,
     @SerializedName("duration_days") val durationDays: Int,
-    @SerializedName("votesCount") val votesCount: Int,
+    @SerializedName("options") val options: List<ElectionOption>
 )

@@ -1,5 +1,6 @@
-package com.example.clickvoteandroid
+package com.example.clickvoteandroid.api
 
+import com.example.clickvoteandroid.dataClasses.Survey
 import retrofit2.Call
 import retrofit2.http.GET
 

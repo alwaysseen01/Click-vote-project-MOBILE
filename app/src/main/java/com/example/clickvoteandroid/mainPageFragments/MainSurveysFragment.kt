@@ -1,4 +1,4 @@
-package com.example.clickvoteandroid
+package com.example.clickvoteandroid.mainPageFragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.example.clickvoteandroid.R
+import com.example.clickvoteandroid.dataClasses.Survey
+import com.example.clickvoteandroid.api.SurveyApi
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
