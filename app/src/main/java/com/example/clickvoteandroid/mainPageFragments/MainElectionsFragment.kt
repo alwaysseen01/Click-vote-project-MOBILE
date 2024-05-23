@@ -25,7 +25,7 @@ class MainElectionsFragment : Fragment() {
 
     private lateinit var electionsContainer: LinearLayout
 
-    private val url = "http://10.0.2.2:8081/elections/active/"
+    private val url = "http://172.20.10.6:8081/elections/active/"
 
     override fun onCreateView(
         inflater: LayoutInflater,

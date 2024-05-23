@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainPetitionsFragment : Fragment() {
     private lateinit var petitionsContainer: LinearLayout
 
-    private val url = "http://10.0.2.2:8081/petitions/active/"
+    private val url = "http://172.20.10.6:8081/petitions/active/"
 
     override fun onCreateView(
         inflater: LayoutInflater,

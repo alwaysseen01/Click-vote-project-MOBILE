@@ -23,9 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ResultsElectionsFragment : Fragment() {
     private lateinit var electionsContainer: LinearLayout
 
-    private val completedElectionsUrl = "http://10.0.2.2:8081/elections/completed/"
-    private val completedElectionsResultsUrl = "http://10.0.2.2:8081/{election_id}/results/"
-    private val completedElectionWinnerUrl = "http://10.0.2.2:8081/{election_id}/winner/"
+    private val completedElectionsUrl = "http://172.20.10.6:8081/elections/completed/"
+    private val completedElectionsResultsUrl = "http://172.20.10.6:8081/{election_id}/results/"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

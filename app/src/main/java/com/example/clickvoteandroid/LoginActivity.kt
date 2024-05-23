@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class LoginActivity : AppCompatActivity() {
     private var usernameField: EditText? = null
     private var passwordField: EditText? = null
-    private var loginUrl = "http://10.0.2.2:8081/auth/login/"
+    private var loginUrl = "http://172.20.10.6:8081/auth/login/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

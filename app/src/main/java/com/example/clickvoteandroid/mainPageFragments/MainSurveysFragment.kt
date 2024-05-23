@@ -22,7 +22,7 @@ class MainSurveysFragment : Fragment() {
 
     private lateinit var surveysContainer: LinearLayout
 
-    private val url = "http://10.0.2.2:8081/surveys/active/"
+    private val url = "http://172.20.10.6:8081/surveys/active/"
 
     override fun onCreateView(
         inflater: LayoutInflater,
